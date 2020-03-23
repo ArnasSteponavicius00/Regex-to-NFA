@@ -4,7 +4,9 @@
 #Shunting yard algorithm for regular expressions.
 
 def shunt(infix):
+
     infix = list(infix)[::-1] # reverse list.
+
     print(f"\nENTERED INFIX: {infix}\n")
     #Operator stack.
     opstack, postfix = [], []
@@ -21,7 +23,6 @@ def shunt(infix):
         if cChar == '(':
             #Push to stack
             opstack.append(cChar)
-
 
         elif cChar == ')':
             #Pop the operator stack until you find opening bracket

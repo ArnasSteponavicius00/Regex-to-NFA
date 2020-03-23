@@ -6,7 +6,6 @@ from state import State
 from fragment import Fragment
 from shunting import shunt
 
-
 def regex_compile(infix):
     postfix = shunt(infix)
     postfix = list(postfix)[::-1]
