@@ -2,21 +2,30 @@
 
 #Arnas Steponavicius.
 #Shunting yard algorithm for regular expressions.
+#Adapted from Ian McLoughlin 
 
 def shunt(infix):
-
+    print(f"ENTERED INFIX: {infix}")
     infix = list(infix)[::-1] # reverse list.
 
-    print(f"\nENTERED INFIX: {infix}\n")
+    print(f"REVERSED INFIX: {infix}\n")
     #Operator stack.
     opstack, postfix = [], []
 
     #Operator precedence.
     precedence = {'*': 100, '.': 80, '|': 60,')': 40 ,'(': 20}
 
-    #Loop through input one at at time (Try walrus operator)
+    #Loop through input one at a time
+
+    '''
+    Walrus Operator attempt kept returning an error of "IndexError: pop from empty list", 
+    Reference: https://www.youtube.com/watch?v=XLIHPU_jxUY
+
+    while (cChar := infix.pop()):
+    '''
+    print("INFIX LIST:")
     while infix:
-        #Pop character from input.
+        print(infix)
         cChar = infix.pop()
 
         #Decide what to do based on character.
@@ -45,4 +54,3 @@ def shunt(infix):
         postfix.append(opstack.pop())
 
     return ''.join(postfix)
-
