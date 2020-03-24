@@ -18,8 +18,7 @@ def compile(infix):
 
     	if cChar == '.':
     		# Pop two Fragments
-    		frag1 = nfa_stack.pop()
-    		frag2 = nfa_stack.pop()
+    		frag1, frag2 = nfa_stack.pop(), nfa_stack.pop()
 
     		# Point frag2 accept state at frag1 start state
     		frag2.accept.edges.append(frag1.start)
@@ -29,12 +28,10 @@ def compile(infix):
 
     	elif cChar == '|':
     		# Pop two Fragments
-    		frag1 = nfa_stack.pop()
-    		frag2 = nfa_stack.pop()
+    		frag1, frag2 = nfa_stack.pop(), nfa_stack.pop()
 
     		# Create new start and accept states
-    		accept = State()
-    		start = State(edges=[frag1.start, frag2.start])
+    		accept, start = State(), State(edges=[frag1.start, frag2.start])
 
     		# Point old accept state to new one
     		frag2.accept.edges.append(accept)
@@ -48,8 +45,7 @@ def compile(infix):
     		frag = nfa_stack.pop()
 
     		# Create new start and accept states
-    		accept = State()
-    		start = State(edges=[frag.start, accept])
+    		accept, start = State(), State(edges=[frag.start, accept])
 
     		# Point arrows
     		frag.accept.edges.extend([frag.start, accept])
@@ -62,7 +58,7 @@ def compile(infix):
     		newFrag = Fragment(start, accept)
 
     	nfa_stack.append(newFrag)
-    # The NFA stack should have exactky 1 nfa
+    # The NFA stack should have exactly 1 NFA
     return nfa_stack.pop()
 
 def followes(state, current):
@@ -106,4 +102,4 @@ def match(regex, s):
     # Ask the NFA if it matches the string s
     return (nfa.accept in current)
 
-print(match("a.b|b*", "bbbbbbbbbb"))
+print(match("a.b|b*", "cbbbbbbbb"))

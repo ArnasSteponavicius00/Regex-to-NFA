@@ -7,10 +7,9 @@
 def shunt(infix):
     infix = list(infix)[::-1]
     print(f"\nREVERSED INFIX: {infix}")
-    # Operator stack
-    opstack = []
-    # Output list
-    postfix = []
+    # Operator stack, Output list
+    opstack, postfix = [], []
+    
     # Operator precedence.
     precedence = {'*': 100, '.': 80, '|': 60, ')': 40, '(': 20}
 
@@ -28,7 +27,7 @@ def shunt(infix):
         cChar = infix.pop()
 
         # Decide what to do based on the character
-        if cChar  == '(':
+        if cChar == '(':
             # Push and open to the opstack stack
             opstack.append(cChar)
 
@@ -36,12 +35,12 @@ def shunt(infix):
             # Pop the operator stack until you find an opening bracket
             while opstack[-1] != '(':
                 postfix.append(opstack.pop())
-                # Get rid of the opening bracket
+            # Get rid of the opening bracket
             opstack.pop()
 
         elif cChar in precedence:
             # Push any operators on the opstack stack with higher precedence to the output
-            while opstack and precedence[cChar] < precedence[opstack [- 1]]:
+            while opstack and precedence[cChar] < precedence[opstack [-1]]:
                 postfix.append(opstack.pop())
             # Push cChar to the operator stack
             opstack.append(cChar)
