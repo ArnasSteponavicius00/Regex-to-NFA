@@ -6,7 +6,7 @@ from state import State
 from fragment import Fragment
 from shunting import shunt
 
-def regex_compile(infix):
+def compile(infix):
     postfix = shunt(infix)
     postfix = list(postfix)[::-1]
 
@@ -22,7 +22,7 @@ def regex_compile(infix):
     		frag2 = nfa_stack.pop()
 
     		# Point frag2 accept state at frag1 start state
-    		frag2.start.edges.append(frag1.start)
+    		frag2.accept.edges.append(frag1.start)
 
     		# New instance of fragment to rep new NFA
     		newFrag = Fragment(frag2.start, frag1.accept)
@@ -37,8 +37,8 @@ def regex_compile(infix):
     		start = State(edges=[frag1.start, frag2.start])
 
     		# Point old accept state to new one
-    		frag2.start.edges.append(accept)
-    		frag1.start.edges.append(accept)
+    		frag2.accept.edges.append(accept)
+    		frag1.accept.edges.append(accept)
 
     		# New instance of fragment to rep new NFA
     		newFrag = Fragment(start, accept)
@@ -65,15 +65,45 @@ def regex_compile(infix):
     # The NFA stack should have exactky 1 nfa
     return nfa_stack.pop()
 
-
+def followes(state, current):
+	# Only do this when we haven't seen the state.
+	if state not in current:
+		# Put the state itself into current
+		current.add(state)
+		# See whether state is labelled by e(psilon)
+		if state.label is None:
+			#Loop through states pointed to by this one
+			for x in state.edges:
+				# Follow all of their e(psilons)
+				followes(x, current)
 
 def match(regex, s):
     # This function will return true if the regular expression
     # regex fully matches the string s. It returns false otherwise
 
     # Compile the regular expression into an NFA
-    nfa = regex_compile(regex)
-    # Ask the NFA if it matches the string s
-    return nfa
+    nfa = compile(regex)
 
-print(match("(a.b)|c*", "bbbbbbbbbb"))
+    # Try to match the regex to the string s
+    # Current set of states
+    current = set()
+    followes(nfa.start, current)
+    prev = set()
+
+    # Loop through chars in s
+    for cChar in s:
+    	# Keep track of where we are, create new empty set for next state
+    	prev, current = current, set()
+    	
+    	# Loop through previous states
+    	for state in prev:
+    		# Only follow arrows not labeled by e(psilon).
+    		if state.label is not None:
+    			if state.label == cChar:
+    				# Append the state(s) at the end of the arrow to current
+    				followes(state.edges[0], current)
+
+    # Ask the NFA if it matches the string s
+    return (nfa.accept in current)
+
+print(match("a.b|b*", "bbbbbbbbbb"))
