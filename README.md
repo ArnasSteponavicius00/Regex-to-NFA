@@ -16,8 +16,4 @@ cd thompson_const
 * Run the following command
 ```
 python regex.py
-<<<<<<< HEAD
 ```
-=======
-```
->>>>>>> ec605723f9f3a221d9c96cae25358624a324ea11
