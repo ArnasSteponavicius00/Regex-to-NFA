@@ -5,11 +5,9 @@
 from state import State
 
 class Fragment:
-    #Start state
-    start = None
-    #Accept State
-    accept = None
-
+    """NFA Fragment with a start and accept state"""
     def __init__(self, start, accept):
+        #Start state
         self.start = start
+        #Accept State
         self.accept = accept

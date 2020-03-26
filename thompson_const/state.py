@@ -3,16 +3,9 @@
 #Classes used in Thompson's construction, adapted from Ian McLoughlin
 
 class State:
-    #Every state has 0, 1, or 2 edges from it.
-    edges = []
-
-    #Label for arrows, None means epsilon
-    label = None
-
-    # Constructor for Class.
+    """A State with one or two edges, all edges are labelled by label"""
     def __init__(self, label = None, edges = []):
-       self.edges = edges
-       self.label = label
-
-    
-
+        #Every state has 0, 1, or 2 edges from it.
+        self.edges = edges if edges else []
+        #Label for arrows, None means epsilon
+        self.label = label

@@ -5,25 +5,24 @@
 #Adapted from Ian McLoughlin 
 
 def shunt(infix):
+    """Convert an expression in infix notation to postif notation"""
     infix = list(infix)[::-1]
     print(f"\nREVERSED INFIX: {infix}")
     # Operator stack, Output list
     opstack, postfix = [], []
     
     # Operator precedence.
-    precedence = {'*': 100, '.': 80, '|': 60, ')': 40, '(': 20}
+    precedence = {'*': 100, '?': 99,'+': 98, '.': 80, '|': 60, ')': 40, '(': 20}
 
     #Loop through input one at a time
 
-    '''
-    Walrus Operator attempt kept returning an error of "IndexError: pop from empty list", 
-    Reference: https://www.youtube.com/watch?v=XLIHPU_jxUY
-    while (cChar := infix.pop()):
-    '''
-    print("\nINFIX LIST STACK:")
+    #Walrus Operator attempt kept returning an error of "IndexError: pop from empty list", 
+    #Reference: https://www.youtube.com/watch?v=XLIHPU_jxUY
+    #while (cChar := infix.pop()):
+    
     while infix:
         # Pop a character from the input
-        print(infix)
+        print(f"STACK: {infix}")
         cChar = infix.pop()
 
         # Decide what to do based on the character
@@ -39,7 +38,7 @@ def shunt(infix):
             opstack.pop()
 
         elif cChar in precedence:
-            # Push any operators on the opstack stack with higher precedence to the output
+            # Push any operators on the opstack with higher precedence to the output
             while opstack and precedence[cChar] < precedence[opstack [-1]]:
                 postfix.append(opstack.pop())
             # Push cChar to the operator stack
