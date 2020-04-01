@@ -1,5 +1,4 @@
 # Graph Theory Project 3rd Year Sem 2
-# G00361891 Arnas Steponavicius
 
 ## Introduction
 A program that builds an NFA (Non deterministic Finite Automaton) from a regular expression
