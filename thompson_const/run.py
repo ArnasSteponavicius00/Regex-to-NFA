@@ -2,8 +2,29 @@
 #Arnas Steponavicius
 
 from match import match
+import menu
 
-restring = input("regex=")
-mstring = input("match=")
+#Print header
+menu.header()
 
-print(match(restring, mstring))
+def runner():
+	cont = True;
+
+	while cont:
+		#Take user input
+		regex = input("\nregex=")
+		userString = input("match=")
+
+		result = match(regex, userString)
+		print(f"\nmatch: {result}")
+
+		option = input("\ntest another string? [y/n]: ")
+
+		if option.casefold() == 'n':
+			cont = False
+			print("===============================")
+			print("EXIT")
+
+		print("===============================")
+
+runner()
