@@ -1,6 +1,9 @@
 #! usr/bin/env python3
 #Arnas Steponavicius
 
+import sys
+sys.path.append('./utils')
+
 from match import match
 import menu
 

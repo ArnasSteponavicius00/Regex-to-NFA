@@ -10,7 +10,7 @@ git clone https://github.com/ArnasSteponavicius00/graph_theory_project.git
 ```
 * Open cmd inside the cloned directory
 ```
-cd thompson_const
+cd project
 ```
 * Run the following command
 ```
