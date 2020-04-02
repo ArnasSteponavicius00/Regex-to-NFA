@@ -7,10 +7,10 @@ from state import State
 class Fragment:
     """NFA Fragment with a start and accept state"""
     def __init__(self, start, accept):
-    	"""
-    	:param start: object
-    	:param accept: object
-    	"""
+        """
+        :param start: object
+        :param accept: object
+        """
         #Start state
         self.start = start
         #Accept State

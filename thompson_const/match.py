@@ -13,7 +13,6 @@ def followes(state, current):
     if state not in current:
         # Put the state itself into current
         current.add(state)
-        print(current)
         # See whether state is labelled by e(psilon)
         if state.label is None:
             #Loop through states pointed to by this one
