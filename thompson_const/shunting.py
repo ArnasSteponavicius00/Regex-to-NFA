@@ -5,7 +5,12 @@
 #Adapted from Ian McLoughlin 
 
 def shunt(infix):
-    """Convert an expression in infix notation to postif notation"""
+    """Convert an expression in infix notation to postfix notation
+    :param infix: regular expression
+    :type infix: string
+    :return: infix converted to postfix
+    """
+
     infix = list(infix)[::-1]
     print(f"\nREVERSED INFIX: {infix}")
     # Operator stack, Output list

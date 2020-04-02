@@ -8,6 +8,7 @@ import menu
 menu.header()
 
 def runner():
+	'''Runner function, allows user to input their regex and string to match'''
 	cont = True;
 
 	while cont:

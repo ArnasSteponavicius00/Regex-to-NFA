@@ -7,7 +7,12 @@ from fragment import Fragment
 from shunting import shunt
 
 def compile(infix):
-    """Return NFA fragment of the infix expression"""
+    """Return NFA fragment of the infix expression
+    :param infix: regular expression
+    :type infix: string
+    :return: list
+    """
+
     # Convert infix to postfix
     postfix = shunt(infix)
     # Make postfix a stack
@@ -20,6 +25,7 @@ def compile(infix):
         cChar = postfix.pop()
 
         if cChar == '.':
+            # Concatenation
             # Pop two Fragments
             frag1, frag2 = nfa_stack.pop(), nfa_stack.pop()
 
@@ -29,6 +35,7 @@ def compile(infix):
             start, accept = frag2.start, frag1.accept
 
         elif cChar == '|':
+            # Alternation
             # Pop two Fragments
             frag1, frag2 = nfa_stack.pop(), nfa_stack.pop()
 
@@ -40,6 +47,14 @@ def compile(infix):
             frag1.accept.edges.append(accept)
 
         elif cChar == '?':
+            # Zero or One
+            '''
+            One: accepts one character after the '?'
+            Zero: no matches
+            accept state is an arrow that points to nothing, so both accept.
+            Similar to kleene star, just doesn't point back to itself after
+            accepting a character.
+            '''
             # Pop one fragment
             frag = nfa_stack.pop()
 
@@ -50,6 +65,11 @@ def compile(infix):
             frag.accept.edges.append(accept)
 
         elif cChar == '+':
+            # One or more
+            '''
+            Accepts if there is one character and if more are read in, 
+            points back to itself (frag.start)
+            '''
             # Pop one fragment
             frag = nfa_stack.pop()
 
@@ -60,6 +80,7 @@ def compile(infix):
             frag.accept.edges = [frag.start, accept]
 
         elif cChar == '*':
+            # Kleene Star (Zero or more)
             # Pop one fragment
             frag = nfa_stack.pop()
 

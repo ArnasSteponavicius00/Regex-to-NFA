@@ -5,11 +5,15 @@
 from regex import compile
 
 def followes(state, current):
-    """Follows edges labelled as e(psilon)"""
+    """Follows edges labelled as e(psilon)
+    :param state: object
+    :param current: object
+    """
     # Only do this when we haven't seen the state.
     if state not in current:
         # Put the state itself into current
         current.add(state)
+        print(current)
         # See whether state is labelled by e(psilon)
         if state.label is None:
             #Loop through states pointed to by this one
@@ -20,6 +24,9 @@ def followes(state, current):
 def match(regex, s):
     """This function will return true if the regular expression
     fully matches the string s. It returns false otherwise
+    :param regex: string
+    :param s: string
+    :return: whether nfa matches string
     """
 
     # Compile the regular expression into an NFA

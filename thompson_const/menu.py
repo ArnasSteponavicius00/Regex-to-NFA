@@ -1,10 +1,11 @@
 #! usr/bin/env python3
 #Arnas Steponavicius
-#Menu Class
+#Program header function
 
 def header():
-	print("|===========================|")
-	print("|        Graph Theory       |")
-	print("|     Arnas Steponavicius   |")
-	print("|         G00361891         |")
-	print("|===========================|")
+    """Header for program"""
+    print("|===========================|")
+    print("|        Graph Theory       |")
+    print("|     Arnas Steponavicius   |")
+    print("|         G00361891         |")
+    print("|===========================|")
