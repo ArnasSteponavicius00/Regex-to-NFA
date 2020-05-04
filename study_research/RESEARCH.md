@@ -15,3 +15,7 @@ It is used to convert expressions specified in **infix notation** to **postfix n
 ## Python Naming Convention
 * [PEP 8](https://www.python.org/dev/peps/pep-0008/#function-and-variable-names)
 * [Docstrings](https://www.datacamp.com/community/tutorials/docstrings-python)
+
+## Argument Parsing (Argparse)
+* [Version](https://stackoverflow.com/questions/15405636/pythons-argparse-to-show-programs-version-with-prog-and-version-string-formatt)
+* [Python Documentation](https://docs.python.org/dev/library/argparse.html)
