@@ -12,16 +12,26 @@ git clone https://github.com/ArnasSteponavicius00/graph_theory_project.git
 ```
 cd project
 ```
-* Run the following command
+* Run the following command - 1st way
 ```
 python run.py
 ```
+* OR via command line arguments - 2nd way
+```
+python run.py -r <regex string> -s <string>
+```
 
 ## How to use:
+- 1st way
 1. Enter regular expression
 2. Enter string you wish to compare
 3. Result will return either ```True``` or ```False```
 4. Choose between [y/n] | y - continue , n - exit.
+
+- 2nd way
+1. python run.py -r "regex string" -s [string]
+2. Note: the regex string must be encased in quotation marks i.e 
+3. ```python run.py -r "a.b|c*" -s cccccc```
 
 ## Author:
 * Arnas Steponavicius
